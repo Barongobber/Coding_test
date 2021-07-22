@@ -40,7 +40,7 @@
                 $.ajax(
                 {
                     type: "POST",
-                    url: "controller/product-controller.php",
+                    url: "controllers/product-controller.php",
                     data: 
                     {
                         sku: $(this).val()
@@ -58,7 +58,7 @@
             $.ajax(
             {
                 type: "GET",
-                url: "controller/product-controller.php",
+                url: "controllers/product-controller.php",
                 success: function (response)
                 {
                     // console.log(response);
@@ -68,7 +68,7 @@
                         $.ajax(
                         {
                             type: "GET",
-                            url: "controller/view-controller.php",
+                            url: "controllers/view-controller.php",
                             data: 
                             {
                                 type: product['product_type'],

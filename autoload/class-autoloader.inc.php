@@ -4,7 +4,7 @@ spl_autoload_register('myAutoLoader');
 
 function myAutoLoader($className)
 {
-    $path = "../model/";
+    $path = "../models/";
     $extension = ".model.php";
     $fileName = $path . strtolower($className)  . $extension;
 
