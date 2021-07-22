@@ -6,5 +6,5 @@
     $price = $_GET['price'];
     $attribute = $_GET['attribute'];
     $product = new $type($type, $sku, $name, $price, $attribute);
-    $product->print();    
+    $product->print();  
 ?>

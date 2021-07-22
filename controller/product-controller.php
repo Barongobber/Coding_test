@@ -5,10 +5,8 @@
     
     if ($method == "GET")
     {
-        $productList = Product::getAllProduct();
-        $test = json_encode($productList); 
-        echo var_dump($test);    
-        // echo json_encode($productList);
+        $productList = Product::getAllProduct();   
+        echo json_encode($productList);
     }
     else if ($method == "POST") 
     {
