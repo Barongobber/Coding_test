@@ -58,5 +58,6 @@
         abstract public function getAttribute();
         abstract public function insert();
         abstract public function print();
+        abstract public static function showForm();
     }
 ?>

@@ -16,13 +16,13 @@
             <div class="d-sm-flex justify-content-between align-items-center mb-12" >
                 <h2>Product Add</h2>
                 <div class="m-1">
-                    <input type="submit" class="btn btn-success" value="Save">
+                    <button class="btn btn-success" id="save">Save</button>
                     <a href="index" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
             <hr class="m-1">
             <label for="sku" class="col-md-1">SKU</label>
-            <input class="col-md-2" type="text" name="sku" id="sku" placeholder="Insert 8 Digits SKU Code" minlength="8" required> <br>
+            <input class="col-md-2" type="text" name="sku" id="sku" placeholder="Insert 8 Digits SKU Code" minlength="8" maxlength="8" required> <br>
             <label for="name" class="col-md-1">Name</label>
             <input class="col-md-2" type="text" name="name" id="name" placeholder="Insert Product Name" required> <br>
             <label for="price" class="col-md-1">Price</label>
@@ -36,7 +36,6 @@
             </select>
             <div id="content">   
                 <!-- selected type goes here -->
-                <p class="text-muted"><b>Please select one of type first</b></p>
             </div>
         </form>
     </body>
@@ -51,24 +50,28 @@
             
             $("#productType").change(function()
             {
-                var type = $("#productType").val();               
-                assign(type);
-            });
-            
-            function assign(type){
-                var content = 'forms/default_form.html';
+                var type = $("#productType").val();
                 if (type == "")
                 {
-                    $("#content").load(content);
+                    $("#content").html("<p class='text-muted'><b>Please select one of type first</b></p>");
                 }
-                else 
+                else
                 {
-                    content = 'forms/'+type+'_form.html';
-                    $("#content").load(
-                        content
-                    );
-                }
-            }
+                    $.ajax(
+                    {
+                        type: "POST",
+                        url: "controllers/view-controller.php",
+                        data: 
+                        {
+                            type
+                        },
+                        success: function (response)
+                        {
+                            $("#content").html(response);
+                        }
+                    })
+                }              
+            });
 
             function setter()
             {

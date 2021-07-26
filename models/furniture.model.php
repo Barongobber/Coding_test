@@ -76,11 +76,24 @@
                         "<p class='card-text m-0'>". $this->getSku() ."</p>".
                         "<p class='card-text m-0'>". $this->getName() ."</p>".
                         "<p class='card-text m-0'>". $this->getPrice() ." $</p>".
-                        "<p class='card-text m-0'>Dimension: ". $this->getHeight() ."x". $this->getWidth() ."x". $this->getLength() . "</p>".
+                        "<p class='card-text m-0'>Dimension: ". $this->getHeight() ." CM x". $this->getWidth() ."CM x". $this->getLength() . " CM</p>".
                     "</div>".
                 "</div>".
             "</div>".
         "</div>";
-        } 
+        }
+        
+        public static function showForm()
+        {
+            echo "<label for='height' class='col-md-1'>Height</label>".
+            "<input class='col-md-2' type='number' id='height' name='Content[]' placeholder='Insert Product Height (CM)'  required><br>" . 
+            "<label for='width' class='col-md-1'>Width</label>".
+            "<input class='col-md-2' type='number' id='width' name='Content[]'  placeholder='Insert Product Width (CM)' required><br>".
+            "<label for='length' class='col-md-1'>Length</label>".
+            "<input class='col-md-2' type='number' id='length' name='Content[]' placeholder='Insert Product Length (CM)'  required>".
+            "<p class='text-muted'>".
+                "please provide dimension in HxWxL format".
+            "</p>";
+        }
     }
 ?>
