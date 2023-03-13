@@ -1,11 +1,13 @@
 <?php
+
+    // namespace Model;
     abstract class Product 
     {
         protected $sku;
         protected $name;
         protected $price;
         protected $type;
-
+        
         public function __construct($_sku = "", $_name = "", $_price = 0, $type = "")
         {
             $this->sku = $_sku;   
@@ -14,6 +16,19 @@
             $this->type = $type;
         }
         
+
+        public function save()
+        {
+            DB::insert('product', array
+            (
+                'sku' => $this->getSku(),
+                'product_name' => $this->getName(),
+                'product_price' => $this->getPrice(),
+                'product_type' => $this->getType()
+            ));
+        }
+        
+        //getter
         public function getSku() 
         {
             return $this->sku;
@@ -34,30 +49,8 @@
             return $this->type;
         }
         
-        public static function getAllProduct() 
-        {
-            $productList = array();
-            $sql = "SELECT * FROM product";
-            $result = mysqli_query(DB::connect(), $sql);
-            while($row = mysqli_fetch_assoc($result))
-            {
-                $productList[] = $row;
-            }
-            mysqli_close(DB::connect());
-            return $productList;
-        }
-        
-        public static function deleteProduct($sku) 
-        {
-            $sql = "DELETE FROM product WHERE product_sku='". $sku ."'";
-            $result = mysqli_query(DB::connect(), $sql);
-            mysqli_close(DB::connect());
-        }
-        
+        //abstract function
         abstract public function setAttribute($attribute);
         abstract public function getAttribute();
-        abstract public function insert();
-        abstract public function print();
-        abstract public static function showForm();
     }
 ?>
